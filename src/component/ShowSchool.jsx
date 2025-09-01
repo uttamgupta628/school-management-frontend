@@ -16,7 +16,7 @@ const ShowSchools = () => {
       setLoading(true);
       setError('');
       
-      const response = await axios.get('http://localhost:5000/api/schools');
+      const response = await axios.get('https://school-management-backend-01hi.onrender.com/api/schools');
       
       if (response.data && response.data.success && response.data.data) {
         setSchools(response.data.data);
@@ -50,7 +50,7 @@ const ShowSchools = () => {
   const handleDeleteSchool = async (schoolId) => {
     if (window.confirm('Are you sure you want to delete this school?')) {
       try {
-        const response = await axios.delete(`http://localhost:5000/api/schools/${schoolId}`);
+        const response = await axios.delete(`https://school-management-backend-01hi.onrender.com/api/schools/${schoolId}`);
         
         if (response.data.success) {
           // Remove the deleted school from the state

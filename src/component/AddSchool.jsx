@@ -48,7 +48,7 @@ const AddSchool = () => {
         formData.append('image', data.image[0]);
       }
 
-      const response = await axios.post('http://localhost:5000/api/schools', formData, {
+      const response = await axios.post('https://school-management-backend-01hi.onrender.com/api/schools', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
