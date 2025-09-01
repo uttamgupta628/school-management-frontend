@@ -33,6 +33,7 @@ const ShowSchools = () => {
       setLoading(false);
     }
   };
+  
   const filteredSchools = Array.isArray(schools) ? schools.filter(school =>
     school.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     school.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -50,11 +51,11 @@ const ShowSchools = () => {
   const handleDeleteSchool = async (schoolId) => {
     if (window.confirm('Are you sure you want to delete this school?')) {
       try {
+        console.log('Deleting school with ID:', schoolId);
         const response = await axios.delete(`https://school-management-backend-01hi.onrender.com/api/schools/${schoolId}`);
         
         if (response.data.success) {
-          // Remove the deleted school from the state
-          setSchools(schools.filter(school => school.id !== schoolId));
+          setSchools(schools.filter(school => school._id !== schoolId));
           alert('School deleted successfully!');
         } else {
           setError('Failed to delete school');
@@ -99,7 +100,7 @@ const ShowSchools = () => {
       <div className="schools-grid">
         {filteredSchools.length > 0 ? (
           filteredSchools.map((school) => (
-            <div key={school.id} className="school-card">
+            <div key={school._id} className="school-card">
               <div className="school-image">
                 <img
                   src={school.image || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop'}
@@ -138,7 +139,7 @@ const ShowSchools = () => {
                 </button>
                 <button 
                   className="btn-delete"
-                  onClick={() => handleDeleteSchool(school.id)}
+                  onClick={() => handleDeleteSchool(school._id)}
                 >
                   Delete
                 </button>

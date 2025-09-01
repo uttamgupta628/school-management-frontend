@@ -47,7 +47,6 @@ const AddSchool = () => {
       if (data.image && data.image.length > 0) {
         formData.append('image', data.image[0]);
       }
-
       const response = await axios.post('https://school-management-backend-01hi.onrender.com/api/schools', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
